@@ -1,0 +1,11 @@
+{
+    "name": "tom-charles/devlab-back-wiki-movies",
+    "autoload": {
+        "psr-4": {
+            "TomCharles\\DevlabBackWikiMovies\\": "src/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}

@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteRule ^$ ./src/views/index/index.php [L]
+	RewriteRule ^/public/$ ./public/ [L]
+	RewriteRule ^([A-Za-z]+\.php)$ ./src/views/index/$1 [L]
+</IfModule>
