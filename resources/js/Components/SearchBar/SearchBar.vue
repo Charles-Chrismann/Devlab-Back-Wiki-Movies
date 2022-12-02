@@ -1,13 +1,18 @@
 <script setup>
+import {Link} from "@inertiajs/inertia-vue3";
 import axios from 'axios';
 
-import {ref} from "vue";
+import {ref, onMounted } from "vue";
 import Result from "./Result.vue";
 const searchbar = ref();
+const submit = ref(null);
+let submitEl;
 const results = ref([]);
+const LinkHref = ref();
 console.log(results.value)
 async function search(){
     console.log(searchbar.value.value)
+    LinkHref.value = `/search/${searchbar.value.value}`
     if(!searchbar.value.value || searchbar.value.value === '') {
         results.value = []
         return
@@ -29,10 +34,23 @@ async function search(){
         });
 }
 
+function navigateToSearchPage(submitEl) {
+    console.log(submitEl.target)
+    submitEl.target.submit()
+}
+
+onMounted(() => {
+    submitEl = submit.$el;
+});
+
 </script>
 
 <template>
-    <input type="text" @input="search" ref="searchbar">
+    <form :action="LinkHref" method="get" @submit.prevent="navigateToSearchPage">
+        <input type="text" @input="search" ref="searchbar">
+        <Link :href="LinkHref" ref="submit">Rechercher</Link>
+    </form>
+
     <ul>
         <Result v-for="result in results" :film="result"/>
     </ul>

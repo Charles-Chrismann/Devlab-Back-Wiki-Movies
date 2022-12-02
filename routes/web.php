@@ -32,6 +32,16 @@ Route::get('/login', function() {
     return Inertia::render('Welcome');
 });
 
+Route::get('/movie/{id}', function($id) {
+    $movie = \App\Http\Controllers\MovieController::getMovieById($id);
+    return Inertia::render('Movie', ['movie' => $movie]);
+});
+
+Route::get('/search/{queryStr}', function($queryStr) {
+    $movies = \App\Http\Controllers\MovieController::getFilteredMovies($queryStr, request('sort_by'));
+    return Inertia::render('Search', ['movies' => $movies]);
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
