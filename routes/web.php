@@ -28,6 +28,10 @@ Route::get('/', function() {
     return Inertia::render('Hw');
 });
 
+Route::get('/login', function() {
+    return Inertia::render('Welcome');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
