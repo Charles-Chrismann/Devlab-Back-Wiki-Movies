@@ -21,4 +21,10 @@ class MovieController extends Controller
         $filteredMovies = $movies;
         return $filteredMovies;
     }
+
+    public static function getFilteredMoviesByGenre($genreId, $page)
+    {
+        $movies = TmdbController::getFilteredMoviesByGenre($genreId, $page);
+        return $movies;
+    }
 }

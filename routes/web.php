@@ -32,6 +32,11 @@ Route::get('/login', function() {
     return Inertia::render('Welcome');
 });
 
+Route::get('/genres/{genreId}', function($genreId) {
+    $movies = \App\Http\Controllers\MovieController::getFilteredMoviesByGenre($genreId, request('page'));
+    return Inertia::render('ByGenre', ['movies' => $movies, 'currentUrl' => "/genres/" . $genreId]);
+});
+
 Route::get('/movie/{id}', function($id) {
     $movie = \App\Http\Controllers\MovieController::getMovieById($id);
     return Inertia::render('Movie', ['movie' => $movie]);

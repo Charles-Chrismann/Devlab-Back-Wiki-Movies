@@ -27,4 +27,25 @@ class TmdbController extends Controller
         );
         return json_decode($response->getBody());
     }
+
+    public static function getFilteredMoviesByGenre($genreId, $page){
+        $client = new \GuzzleHttp\Client(array(
+            'verify' => false,
+        ));
+        $query = [
+            'api_key' => $_ENV['TMDB_API_KEY'],
+            'with_genres' => $genreId
+        ];
+
+        $page = intval($page);
+        if($page === 0) $page = 1;
+        $query['page'] = $page;
+
+        $response = $client->request(
+            'GET',
+            "https://api.themoviedb.org/3/discover/movie/",
+            ['query' => $query]
+        );
+        return json_decode($response->getBody());
+    }
 }

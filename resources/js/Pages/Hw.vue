@@ -1,8 +1,9 @@
 <script setup>
-import SearchBar from '../Components/SearchBar/SearchBar.vue'
+import Layout from "./../Shared/Layout.vue";
 </script>
 
 <template>
-    <h1 class="pl-8">hw</h1>
-    <SearchBar />
+    <Layout>
+        <h1>wh</h1>
+    </Layout>
 </template>
