@@ -12,6 +12,12 @@ module.exports = {
 
     theme: {
         extend: {
+            colors: {
+                customDark: '#1a1a1a',
+                customElementDark: '#242424',
+                customSeparator: '#363636',
+                unselectedText: 'rgba(235, 235, 235, 0.38)'
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },

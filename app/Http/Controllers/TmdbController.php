@@ -61,7 +61,6 @@ class TmdbController extends Controller
             'verify' => false,
         ));
         $queryParams['api_key'] = $_ENV['TMDB_API_KEY'];
-        dd($queryParams);
         $response = $client->request(
             'GET',
             "https://api.themoviedb.org/3/discover/movie/",

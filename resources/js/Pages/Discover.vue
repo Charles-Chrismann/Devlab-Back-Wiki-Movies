@@ -6,22 +6,18 @@ defineProps(['movies'])
 
 <template>
     <Layout>
-        <div>
-            <form method="post">
-                <p>Filtrer par :</p>
-                <div>
+        <div class="AdvancedFilters bg-customElementDark rounded-lg mx-4">
+            <form method="get">
+                <p class="text-white">Filter by :</p>
+                <div class="radiosContainer">
                     <input type="radio" name="sort_by" value="original_title" id="sort_by_original_title">
                     <label for="sort_by_original_title">Title</label>
-                </div>
-                <div>
                     <input type="radio" name="sort_by" value="vote_average" id="sort_by_vote_average">
                     <label for="sort_by_vote_average">Note</label>
-                </div>
-                <div>
                     <input type="radio" name="sort_by" value="vote_popularity" id="sort_by_vote_popularity">
                     <label for="sort_by_vote_popularity">Popularity</label>
                 </div>
-                <div>
+                <div class="radiosContainer">
                     <input type="radio" name="order_by" value="asc" id="sort_by_asc">
                     <label for="sort_by_asc">Asc</label>
                     <input type="radio" name="order_by" value="desc" id="sort_by_desc" checked>
@@ -45,6 +41,28 @@ defineProps(['movies'])
     </Layout>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+    .AdvancedFilters {
+        user-select: none;
+        .radiosContainer {
+            width: fit-content;
+            border: solid 1px #363636;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            input[type="radio"] {
+                display: none;
 
+                & + label {
+                    cursor: pointer;
+                    color: rgba(235, 235, 235, 0.38);
+                    padding: 0.5rem 2rem;
+                    display: inline-block;
+                }
+                &:checked + label {
+                    color: #ffffff;
+                    background: #1a1a1a;
+                }
+            }
+        }
+    }
 </style>
