@@ -32,6 +32,15 @@ Route::get('/login', function() {
     return Inertia::render('Welcome');
 });
 
+Route::get('/discover/', function() {
+    $queryParams = [
+        'sort_by' => Request('sort_by') . Request('order_by'),
+    ];
+    if(Request('include_adult') !== null) $queryParams['include_adult'] = Request('include_adult')
+    $movies = \App\Http\Controllers\MovieController::getDiscoverMovies($queryParams);
+    return Inertia::render('Discover', ['movies' => $movies]);
+});
+
 Route::get('/genres/{genreId}', function($genreId) {
     $movies = \App\Http\Controllers\MovieController::getFilteredMoviesByGenre($genreId, request('page'));
     return Inertia::render('ByGenre', ['movies' => $movies, 'currentUrl' => "/genres/" . $genreId]);
@@ -43,7 +52,12 @@ Route::get('/movie/{id}', function($id) {
 });
 
 Route::get('/search/{queryStr}', function($queryStr) {
-    $movies = \App\Http\Controllers\MovieController::getFilteredMovies($queryStr, request('sort_by'));
+    $queryParams = [
+        'query' => $queryStr,
+        'sort_by' => request('sort_by') . request('order_by'),
+    ];
+    if(request('include_adult') !== null) $queryParams['include_adult'] = request('include_adult');
+    $movies = \App\Http\Controllers\MovieController::getFilteredMovies($queryStr, $queryParams);
     return Inertia::render('Search', ['movies' => $movies]);
 });
 

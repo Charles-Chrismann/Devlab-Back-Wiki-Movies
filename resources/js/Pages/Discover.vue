@@ -1,14 +1,13 @@
 <script setup>
+import {Link} from "@inertiajs/inertia-vue3";
 import Layout from './../Shared/Layout.vue';
-
-const props = defineProps(['movies'])
-console.log(props)
+defineProps(['movies'])
 </script>
 
 <template>
     <Layout>
         <div>
-            <form>
+            <form method="post">
                 <p>Filtrer par :</p>
                 <div>
                     <input type="radio" name="sort_by" value="original_title" id="sort_by_original_title">
