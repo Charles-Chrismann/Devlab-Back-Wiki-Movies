@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use \App\Http\Controllers\DiscoverController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,14 +34,7 @@ Route::get('/login', function() {
     return Inertia::render('Welcome');
 });
 
-Route::get('/discover/', function() {
-    $queryParams = [
-        'sort_by' => Request('sort_by') . Request('order_by'),
-    ];
-    if(Request('include_adult') !== null) $queryParams['include_adult'] = Request('include_adult')
-    $movies = \App\Http\Controllers\MovieController::getDiscoverMovies($queryParams);
-    return Inertia::render('Discover', ['movies' => $movies]);
-});
+Route::get('/discover/', [DiscoverController::class, 'view']);
 
 Route::get('/genres/{genreId}', function($genreId) {
     $movies = \App\Http\Controllers\MovieController::getFilteredMoviesByGenre($genreId, request('page'));
