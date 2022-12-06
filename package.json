@@ -21,6 +21,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "sass": "^1.56.1"
+        "sass": "^1.56.1",
+        "vue-laravel-csrf": "^1.0.0"
     }
 }
