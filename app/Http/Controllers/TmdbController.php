@@ -11,15 +11,7 @@ class TmdbController extends Controller
         $client = new \GuzzleHttp\Client(array(
             'verify' => false,
         ));
-        $query = [
-            'api_key' => $_ENV['TMDB_API_KEY'],
-            'language' => 'fr'
-        ];
-        $response = $client->request(
-            'GET',
-            "https://api.themoviedb.org/3/movie/" . $id,
-            ['query' => $query]
-        );
+        $response = $client->request('GET', "https://api.themoviedb.org/3/movie/" . $id . "?api_key=" . $_ENV['TMDB_API_KEY']);
         return json_decode($response->getBody());
     }
 
