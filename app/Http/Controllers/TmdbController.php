@@ -48,4 +48,17 @@ class TmdbController extends Controller
         );
         return json_decode($response->getBody());
     }
+    public static function getDiscoverMovies($queryParams){
+        $client = new \GuzzleHttp\Client(array(
+            'verify' => false,
+        ));
+        $queryParams['api_key'] = $_ENV['TMDB_API_KEY'];
+        dd($queryParams);
+        $response = $client->request(
+            'GET',
+            "https://api.themoviedb.org/3/discover/movie/",
+            ['query' => $queryParams]
+        );
+        return json_decode($response->getBody());
+    }
 }
