@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use \App\Http\Controllers\DiscoverController;
+use \App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +29,6 @@ use \App\Http\Controllers\DiscoverController;
 
 Route::get('/', function() {
     return Inertia::render('Hw');
-});
-
-Route::get('/login', function() {
-    return Inertia::render('Welcome');
 });
 
 Route::get('/discover/', [DiscoverController::class, 'view']);
@@ -65,3 +62,16 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::get('/test', function() {
+    return Inertia::render('Test');
+})->name('test');
+
+
+Route::get('login', [LoginController::class, 'login'])->name('login');
+
+Route::post('login', [LoginController::class, 'connection'])->name('connection');
+
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+
