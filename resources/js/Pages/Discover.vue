@@ -1,39 +1,49 @@
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import Layout from './../Shared/Layout.vue';
 import MovieCardResult from './../Shared/MovieCardResult.vue';
 import axios from "axios";
-const props = defineProps(['movies'])
-console.log(props.movies.object)
+// const props = defineProps(['movies'])
+let movies = ref()
+// console.log(props.movies.object)
 
 const SearchForm = ref(null)
 
-function cancelSubmit(e) {
+async function cancelSubmit(e) {
     e.preventDefault();
+    movies.value = await queryAndUpdate()
 }
 
-function queryAndUpdate() {
+async function queryAndUpdate() {
     let formData = new FormData(SearchForm.value)
     console.log(formData)
     let uri = "http://localhost:8000/api/discover?"
     for (const [key, value] of formData) {
         uri += `${key}=${value}&`;
     }
-    axios.get(uri).then(resp => {
-        console.log(resp.data.results)
+    let movies
+    await axios.get(uri).then(resp => {
+        movies = resp.data.results
+        console.log(movies)
     })
-
+    console.log("ttt", movies)
+    return movies
 }
+
+onMounted(async () => {
+    movies.value = await queryAndUpdate()
+    console.log(movies._rawValue)
+})
 </script>
 
 <template>
     <Layout>
         <div class="AdvancedFilters bg-customElementDark rounded-lg mx-4 p-4">
-            <form method="get" ref="SearchForm">
+            <form method="get" ref="SearchForm" @submit="cancelSubmit($event)">
                 <p class="text-white">Filter by :</p>
                 <div class="radiosContainer mb-4">
-                    <input type="radio" name="sort_by" value="vote_popularity" id="sort_by_vote_popularity" checked>
-                    <label for="sort_by_vote_popularity">Popularity</label>
+                    <input type="radio" name="sort_by" value="popularity" id="sort_by_popularity" checked>
+                    <label for="sort_by_popularity">Popularity</label>
                     <input type="radio" name="sort_by" value="original_title" id="sort_by_original_title">
                     <label for="sort_by_original_title">Title</label>
                     <input type="radio" name="sort_by" value="vote_average" id="sort_by_vote_average">
@@ -59,11 +69,9 @@ function queryAndUpdate() {
                 <div class="flex justify-end">
                     <input type="submit" value="GOOOOO" class="py-2 px-8 bg-customGreen">
                 </div>
-
-
             </form>
         </div>
-        <div v-for="movie in movies.results">
+        <div v-for="movie in movies" v-if="movies">
             <MovieCardResult :movie="movie" />
         </div>
     </Layout>
