@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use \App\Http\Controllers\DiscoverController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/search/{queryStr}', [\App\Http\Controllers\SearchController::class, 'search']);
+
+Route::get('/discover/', [DiscoverController::class, 'api']);

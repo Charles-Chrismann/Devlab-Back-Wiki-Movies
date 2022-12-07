@@ -16,7 +16,8 @@ module.exports = {
                 customDark: '#1a1a1a',
                 customElementDark: '#242424',
                 customSeparator: '#363636',
-                unselectedText: 'rgba(235, 235, 235, 0.38)'
+                unselectedText: 'rgba(235, 235, 235, 0.38)',
+                customGreen: '#42d392'
             },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
