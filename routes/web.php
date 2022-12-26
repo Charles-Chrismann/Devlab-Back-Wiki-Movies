@@ -6,6 +6,7 @@ use Inertia\Inertia;
 
 use \App\Http\Controllers\DiscoverController;
 use \App\Http\Controllers\LoginController;
+use \App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,4 +75,4 @@ Route::post('login', [LoginController::class, 'connection'])->name('connection')
 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-
+Route::get('register', [RegisterController::class, 'register'])->name('register');
