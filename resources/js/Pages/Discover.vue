@@ -57,7 +57,7 @@ onMounted(async () => {
                 </div>
                 <div class="mb-8">
                     <div class="flex items-center mb-4">
-                        <input class="mr-2" type="checkbox" name="include_watched" checked>
+                        <input class="mr-2" type="checkbox" name="include_watched" id="include_watched" checked>
                         <label for="include_watched">Include Watched Movies</label>
                     </div>
                     <div class="flex items-center">
