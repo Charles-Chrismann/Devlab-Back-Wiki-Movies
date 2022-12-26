@@ -65,7 +65,7 @@ Route::middleware([
 });
 
 Route::get('/test', function() {
-    return Inertia::render('Test',["monstr"=>"bien joué lartiste"]);
+    return Inertia::render('Test');
 })->name('test');
 
 
