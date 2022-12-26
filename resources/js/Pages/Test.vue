@@ -1,9 +1,13 @@
 <script setup>
 import Layout from "./../Shared/Layout.vue";
+
+defineProps({
+    res : String,
+})
 </script>
 
 <template>
     <Layout>
-        <h1>OK TEST</h1>
+        <h1 class="text-white">OK TEST {{ res }}</h1>
     </Layout>
 </template>
