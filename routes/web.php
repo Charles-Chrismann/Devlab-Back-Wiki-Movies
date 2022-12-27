@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use \App\Http\Controllers\DiscoverController;
 use \App\Http\Controllers\LoginController;
 use \App\Http\Controllers\RegisterController;
+use \App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,3 +79,5 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 
 Route::post('register', [RegisterController::class, 'registerPost'])->name('register.post');
+
+Route::get('user/{username}', [UserController::class, 'ProfileView']);
