@@ -30,7 +30,7 @@ use \App\Http\Controllers\RegisterController;
 
 Route::get('/', function() {
     return Inertia::render('Hw');
-});
+})->name('home');
 
 Route::get('/discover/', [DiscoverController::class, 'view']);
 
@@ -65,7 +65,7 @@ Route::middleware([
 });
 
 Route::get('/test', function() {
-    return Inertia::render('Test');
+    return Inertia::render('Test', ["res"=>session('username')]);
 })->name('test');
 
 
@@ -76,3 +76,5 @@ Route::post('login', [LoginController::class, 'connection'])->name('connection')
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('register', [RegisterController::class, 'register'])->name('register');
+
+Route::post('register', [RegisterController::class, 'registerPost'])->name('register.post');
