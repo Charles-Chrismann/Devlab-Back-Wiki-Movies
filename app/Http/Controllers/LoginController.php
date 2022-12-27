@@ -23,7 +23,14 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)->first();
         if ($user !== null){
             if(Hash::check($request->password, $user->password)){
-                return Inertia::render('Test',["res"=>"Nice !"]);
+                session()->regenerate();
+                session([
+                    'userID'=>$user->id,
+                    'username'=>$user->username,
+                    'email'=>$user->email,
+                    'profilePicture'=>$user->pp_url
+                    ]);
+                return redirect()->route('home');
             }else{
                 $res = "Incorrect password";
             }
@@ -34,6 +41,7 @@ class LoginController extends Controller
     }
 
     public function logout(){
-
+        session()->invalidate();
+        return redirect()->route('connection');
     }
 }

@@ -31,7 +31,7 @@ use \App\Http\Controllers\UserController;
 
 Route::get('/', function() {
     return Inertia::render('Hw');
-});
+})->name('home');
 
 Route::get('/discover/', [DiscoverController::class, 'view']);
 
@@ -66,7 +66,7 @@ Route::middleware([
 });
 
 Route::get('/test', function() {
-    return Inertia::render('Test');
+    return Inertia::render('Test', ["res"=>session('username')]);
 })->name('test');
 
 
@@ -78,4 +78,6 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 
-Route::get('user/{username}', [UserController::class, 'ProfileView'])->name('register');
+Route::post('register', [RegisterController::class, 'registerPost'])->name('register.post');
+
+Route::get('user/{username}', [UserController::class, 'ProfileView']);

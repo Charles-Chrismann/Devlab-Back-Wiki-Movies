@@ -4,7 +4,7 @@ import {useForm} from "@inertiajs/inertia-vue3"
 export default {
     props:{
         errors: Object,
-        res: String
+        res: String,
     },
     setup(){
         const loginForm = useForm({
