@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -81,3 +82,4 @@ Route::get('register', [RegisterController::class, 'register'])->name('register'
 Route::post('register', [RegisterController::class, 'registerPost'])->name('register.post');
 
 Route::get('user/{username}', [UserController::class, 'ProfileView']);
+

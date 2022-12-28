@@ -16,7 +16,7 @@ function showOptions(ref) {
 <template>
     <Layout>
         <div class="">
-
+        <h1 class="text-white">{{ userDatas.username }}</h1>
         </div>
         <div class="albums overflow-hidden">
             <div class="types w-full flex justify-between relative cursor-pointer" :class="reactive({'isPersonal': !isPersonal})">
