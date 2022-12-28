@@ -27,6 +27,7 @@ class RegisterController extends Controller
                 'username'=>$request->username,
                 'email'=>$request->email,
                 'password'=> Hash::make($request->password),
+                'pp_url'=>"https://ui-avatars.com/api/?background=242424&color=42D392&name="."$request->username"."&size=256",
             ]);
 
             $watched = Album::create([

@@ -16,7 +16,8 @@ function showOptions(ref) {
 <template>
     <Layout>
         <div class="">
-        <h1 class="text-white">{{ userDatas.username }}</h1>
+            <h1 class="text-white">{{ userDatas.username }}</h1>
+            <img :src=userDatas.pp_url alt="profile picture" class="h-32 w-32 rounded-full">
         </div>
         <div class="albums overflow-hidden">
             <div class="types w-full flex justify-between relative cursor-pointer" :class="reactive({'isPersonal': !isPersonal})">

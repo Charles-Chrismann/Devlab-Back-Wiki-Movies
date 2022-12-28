@@ -13,7 +13,7 @@ class User extends Model
         return  User::select('id','username','pp_url')->where('username', $username)->first();
     }
 
-    protected $fillable = ['username', 'email', 'password'];
+    protected $fillable = ['username', 'email', 'password', 'pp_url'];
 
 //    protected $primaryKey = 'username';
 //    public $incrementing = false;
