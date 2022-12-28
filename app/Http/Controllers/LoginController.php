@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     public function login(){
-        return Inertia::render('Login');
+        if (!session()->has('userID')) {
+            return Inertia::render('Login');
+        }else{
+            return redirect()->route('myprofile');
+        }
     }
 
     public function connection(Request $request){

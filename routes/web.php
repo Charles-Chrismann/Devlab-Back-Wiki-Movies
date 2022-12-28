@@ -85,10 +85,10 @@ Route::post('register', [RegisterController::class, 'registerPost'])->name('regi
 
 Route::get('user/{username}', [UserController::class, 'ProfileView']);
 
-Route::get('myaccount', [MyProfileController::class, 'MyProfile'])->name('myprofile');
+Route::get('myaccount', [MyProfileController::class, 'MyProfile'])->name('myprofile')->middleware('log');
 
-Route::delete('myaccount/{album}', [AlbumController::class, 'albumDelete'])->name('albumDelete');
+Route::delete('myaccount/{album}', [AlbumController::class, 'albumDelete'])->name('albumDelete')->middleware('log');;
 
-Route::get('new-album', [AlbumController::class, 'newAlbum'])->name('new-album');
+Route::get('new-album', [AlbumController::class, 'newAlbum'])->name('new-album')->middleware('log');
 
-Route::post('new-album', [AlbumController::class, 'albumCreate'])->name('albumCreate');
+Route::post('new-album', [AlbumController::class, 'albumCreate'])->name('albumCreate')->middleware('log');
