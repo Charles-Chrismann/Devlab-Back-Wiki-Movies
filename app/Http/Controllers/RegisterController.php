@@ -41,13 +41,10 @@ class RegisterController extends Controller
             ]);
 
             foreach ([$watched, $ptw] as $album){
-                User_album::create([
-                    'user_id' => $user['id'],
-                    'album_id' => $album['id']
-                ]);
+                User_album::linkAlbum($user['id'], $album['id']);
             }
 
-            return redirect()->route('login');
+            return redirect()->route('login')->with('message','Account created you can login now');
         }
 
     }

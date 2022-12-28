@@ -19,6 +19,9 @@ export default {
 <template>
     <div class="w-full min-h-screen grid place-items-center">
         <div class="form__container bg-customElementDark w-full sm:w-6/12 p-8 rounded-lg">
+            <div v-if="$page.props.flash.message" class="text-blue-500 mb-4 text-center">
+                {{ $page.props.flash.message }}
+            </div>
             <h1 class="pb-8 text-customGreen text-2xl text-center">Login</h1>
             <form class="w-full flex flex-col items-center" @submit.prevent="loginForm.post(route('connection'))">
                 <div class="w-full flex flex-col mb-4">

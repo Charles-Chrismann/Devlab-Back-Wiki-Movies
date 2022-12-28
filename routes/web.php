@@ -9,6 +9,8 @@ use \App\Http\Controllers\DiscoverController;
 use \App\Http\Controllers\LoginController;
 use \App\Http\Controllers\RegisterController;
 use \App\Http\Controllers\UserController;
+use \App\Http\Controllers\MyProfileController;
+use \App\Http\Controllers\AlbumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +85,10 @@ Route::post('register', [RegisterController::class, 'registerPost'])->name('regi
 
 Route::get('user/{username}', [UserController::class, 'ProfileView']);
 
+Route::get('myaccount', [MyProfileController::class, 'MyProfile'])->name('myprofile');
+
+Route::delete('myaccount/{album}', [AlbumController::class, 'albumDelete'])->name('albumDelete');
+
+Route::get('new-album', [AlbumController::class, 'newAlbum'])->name('new-album');
+
+Route::post('new-album', [AlbumController::class, 'albumCreate'])->name('albumCreate');

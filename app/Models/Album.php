@@ -20,7 +20,7 @@ class Album extends Model
 
     public static function getAllAlbum($userId){
 
-        return Album::select('name', 'id as AlbumID')
+        return Album::select('name', 'id as AlbumID', 'isPrivate')
             ->leftJoin('user_albums','albums.id','=','user_albums.album_id')
             ->where('user_albums.user_id','=',$userId)
             ->get();
