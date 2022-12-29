@@ -19,8 +19,6 @@ function destroy(album){
     }
 }
 
-
-
 </script>
 
 <template>
@@ -44,7 +42,7 @@ function destroy(album){
                         <button @click ="destroy(album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">delete</button>
                         <span v-if=" album.isPrivate === 0 " >Public</span>
                         <span v-else>Private</span>
-                        <span>{{ album.name }}</span>
+                        <Link :href="route('deletemoviepage',album.AlbumID)">{{ album.name }}</Link>
                     </div>
                 </div>
                 <div class="albums_liked w-full translate-x-full">
