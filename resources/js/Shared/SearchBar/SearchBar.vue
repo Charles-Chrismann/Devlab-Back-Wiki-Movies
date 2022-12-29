@@ -46,14 +46,16 @@ onMounted(() => {
 </script>
 
 <template>
-    <form :action="LinkHref" method="get" @submit.prevent="navigateToSearchPage">
-        <input type="text" @input="search" ref="searchbar">
-        <Link :href="LinkHref" ref="submit">Rechercher</Link>
-    </form>
-
-    <ul>
-        <Result v-for="result in results" :film="result"/>
-    </ul>
+    <div>
+        <form :action="LinkHref" method="get" @submit.prevent="navigateToSearchPage">
+            <input type="text" @input="search" ref="searchbar">
+            <Link :href="LinkHref" ref="submit">Rechercher</Link>
+        </form>
+    
+        <ul class="absolute bg-white">
+            <Result v-for="result in results" :film="result"/>
+        </ul>
+    </div>
 </template>
 
 <style scoped>

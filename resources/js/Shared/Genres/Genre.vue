@@ -5,9 +5,9 @@ defineProps(['genre'])
 </script>
 
 <template>
-    <div class="inline-block pr-4">
+    <li class="grid place-items-center pr-4 h-6">
         <Link :href="'/genres/' + genre.id">{{ genre.name }}</Link>
-    </div>
+    </li>
 </template>
 
 

@@ -82,9 +82,41 @@ const genres = [
 </script>
 
 <template>
-   <div>
-       <Genre v-for="genre of genres" :genre="genre" />
+   <div class="flex">
+       <input id="toggleGenres" type="checkbox">
+        <ul class="flex flex-wrap bg-white">
+            <Genre v-for="genre of genres" :genre="genre" />
+        </ul>
+        <label for="toggleGenres" class="bg-customGreen px-4">
+            <font-awesome-icon icon="fa-solid fa-angles-left" />
+        </label>
    </div>
 </template>
 
-
+<style lang="scss" scoped>
+input#toggleGenres {
+    display: none;
+    & + ul {
+        transition: all 0.5s ease-in-out;
+        max-height: 24px;
+        overflow: hidden;
+    }
+    &:checked + ul {
+        max-height: fit-content;
+    }
+    & + ul + label {
+        display: grid;
+        place-items: center;
+        
+        & > svg {
+            transition: all 0.5s ease-in-out;
+            transform: rotate(-90deg);
+        }
+    }
+    &:checked + ul + label {
+        & > svg {
+            transform: rotate(0deg);
+        }
+    }
+}
+</style>
