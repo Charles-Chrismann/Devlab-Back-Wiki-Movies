@@ -8,7 +8,7 @@ console.log(props)
 <template>
     <Layout>
         {{ movie.title }}
-
+        {{ movie.id }}
         <img :src="'https://image.tmdb.org/t/p/original' + movie.poster_path" alt="">
     </Layout>
 </template>

@@ -9,6 +9,19 @@ class Album_film extends Model
 {
     use HasFactory;
 
+
+    public static function AlreadyExist($filmID, $albumID){
+        if(self::where('album_id',"=",$albumID)->where('movie_id','=', $filmID)->count() != 0){
+            return true;
+        }
+        return false;
+    }
+
+    public static function addMovie($filmID, $albumID){
+        return self::create(['album_id'=>$albumID,'movie_id'=>$filmID]);
+    }
+
+
     public $timestamps = false;
-    protected $fillable = ['album_id', 'film_id'];
+    protected $fillable = ['album_id', 'movie_id'];
 }

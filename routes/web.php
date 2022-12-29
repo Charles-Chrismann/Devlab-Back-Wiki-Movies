@@ -11,6 +11,8 @@ use \App\Http\Controllers\RegisterController;
 use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\MyProfileController;
 use \App\Http\Controllers\AlbumController;
+use \App\Http\Controllers\LikesController;
+use \App\Http\Controllers\AddMovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,8 +89,15 @@ Route::get('user/{username}', [UserController::class, 'ProfileView']);
 
 Route::get('myaccount', [MyProfileController::class, 'MyProfile'])->name('myprofile')->middleware('log');
 
-Route::delete('myaccount/{album}', [AlbumController::class, 'albumDelete'])->name('albumDelete')->middleware('log');;
-
 Route::get('new-album', [AlbumController::class, 'newAlbum'])->name('new-album')->middleware('log');
 
 Route::post('new-album', [AlbumController::class, 'albumCreate'])->name('albumCreate')->middleware('log');
+
+//Route::delete('myaccount/{albumID}', [LikesController::class, 'unLike'])->name('unlike')->middleware('log');
+
+Route::delete('myaccount/{album}', [AlbumController::class, 'albumDelete'])->name('albumDelete')->middleware('log');
+
+Route::get('movie/{id}/addmovie',[AddMovieController::class, 'addMoviePage'])->name('addmoviepage')
+    ->middleware('log')
+    ->middleware('movie');
+Route::post('movie/{id}/addmovie',[AddMovieController::class, 'addMovie'])->name('addmovie')->middleware('log');

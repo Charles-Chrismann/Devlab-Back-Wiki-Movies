@@ -11,7 +11,7 @@ class Album extends Model
 
     public static function getAlbum($userId, $state = 0){
 
-        return Album::select('name', 'id as AlbumID')
+        return self::select('name', 'id as AlbumID')
                     ->leftJoin('user_albums','albums.id','=','user_albums.album_id')
                     ->where('user_albums.user_id','=',$userId)
                     ->where('albums.isPrivate','=',$state)
@@ -20,7 +20,7 @@ class Album extends Model
 
     public static function getAllAlbum($userId){
 
-        return Album::select('name', 'id as AlbumID', 'isPrivate')
+        return self::select('name', 'id as AlbumID', 'isPrivate')
             ->leftJoin('user_albums','albums.id','=','user_albums.album_id')
             ->where('user_albums.user_id','=',$userId)
             ->get();
@@ -28,7 +28,7 @@ class Album extends Model
 
     public static function getLikedAlbum($userId){
 
-        return Album::select('name', 'id as AlbumID')
+        return self::select('name', 'id as AlbumID')
             ->leftJoin('album_likes','albums.id','=','album_likes.album_id')
             ->where('album_likes.user_id','=',$userId)
             ->get();

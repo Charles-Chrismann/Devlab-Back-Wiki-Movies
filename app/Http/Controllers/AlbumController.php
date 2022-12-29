@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\Album_like;
 use App\Models\User_album;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,8 +15,7 @@ class AlbumController extends Controller
         return Inertia::render('NewAlbum');
     }
     public function albumDelete(Album $album){
-        //Album::where('id','=', $album)->delete();
-        $album->delete();
+        $album->truncate();
         return redirect()->route('myprofile')->with('message','Album deleted !');
     }
 
@@ -28,4 +28,5 @@ class AlbumController extends Controller
         User_album::linkAlbum(session()->get('userID'), $album['id']);
         return redirect()->route('myprofile')->with('message','Album Created !');
     }
+
 }

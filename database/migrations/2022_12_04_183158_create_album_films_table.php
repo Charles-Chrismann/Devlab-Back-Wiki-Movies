@@ -19,10 +19,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreignId('film_id')
-                ->constrained('films')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            $table->integer('movie_id');
         });
     }
 

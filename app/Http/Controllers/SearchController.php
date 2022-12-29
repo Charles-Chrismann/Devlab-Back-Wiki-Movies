@@ -10,7 +10,15 @@ class SearchController extends Controller
         $client = new \GuzzleHttp\Client(array(
             'verify' => false,
         ));
-        $response = $client->request('GET', "https://api.themoviedb.org/3/search/movie/?api_key=b3faa911f948bc3b10f344bcd13a51b5&query=" . $queryStr);
+        $response = $client->request('GET', "https://api.themoviedb.org/3/search/movie/?api_key=".env('TMDB_API_KEY')."&query=" . $queryStr);
         return json_decode($response->getBody())->results;
+    }
+
+    public function getMovieById($id){
+        $client = new \GuzzleHttp\Client(array(
+            'verify' => false,
+        ));
+        $response = $client->request('GET', "https://api.themoviedb.org/3/movie/".$id."?api_key=".env('TMDB_API_KEY'));
+        return json_decode($response->getBody());
     }
 }
