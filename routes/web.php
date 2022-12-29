@@ -13,6 +13,7 @@ use \App\Http\Controllers\MyProfileController;
 use \App\Http\Controllers\AlbumController;
 use \App\Http\Controllers\LikesController;
 use \App\Http\Controllers\AddMovieController;
+use \App\Http\Controllers\RemoveMovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,4 +101,10 @@ Route::delete('myaccount/{album}', [AlbumController::class, 'albumDelete'])->nam
 Route::get('movie/{id}/addmovie',[AddMovieController::class, 'addMoviePage'])->name('addmoviepage')
     ->middleware('log')
     ->middleware('movie');
+
 Route::post('movie/{id}/addmovie',[AddMovieController::class, 'addMovie'])->name('addmovie')->middleware('log');
+
+Route::get('myaccount/{albumID}/delete', [RemoveMovieController::class, 'deleteMoviePage'])
+    ->name('deletemoviepage')
+    ->middleware('log')
+    ->middleware('owner');

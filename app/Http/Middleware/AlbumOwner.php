@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\SearchController;
+use App\Models\User_album;
 use Closure;
 use Illuminate\Http\Request;
 
-class MovieExist
+class AlbumOwner
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,9 @@ class MovieExist
      */
     public function handle(Request $request, Closure $next)
     {
-
-        return $next($request);
+        if(User_album::isOwner(session('userID'), $request['albumID'])){
+            return $next($request);
+        }
+        abort(403);
     }
 }

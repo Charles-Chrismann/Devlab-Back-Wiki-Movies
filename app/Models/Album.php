@@ -34,5 +34,9 @@ class Album extends Model
             ->get();
     }
 
+    public static function getThisAlbum($albumID){
+        return self::where('id','=',$albumID)->get()->first();
+    }
+
     protected $fillable = ['name', 'isPrivate'];
 }

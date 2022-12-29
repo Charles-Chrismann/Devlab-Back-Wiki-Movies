@@ -21,6 +21,9 @@ class Album_film extends Model
         return self::create(['album_id'=>$albumID,'movie_id'=>$filmID]);
     }
 
+    public static function getAllMoviesFromAlbum($albumID){
+        return self::select('movie_id')->where('album_id','=', $albumID)->get();
+    }
 
     public $timestamps = false;
     protected $fillable = ['album_id', 'movie_id'];

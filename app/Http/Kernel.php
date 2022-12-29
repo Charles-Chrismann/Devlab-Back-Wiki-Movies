@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'log' => \App\Http\Middleware\IsLoggedin::class,
         'movie' => \App\Http\Middleware\MovieExist::class,
+        'owner'=> \App\Http\Middleware\AlbumOwner::class,
     ];
 }
