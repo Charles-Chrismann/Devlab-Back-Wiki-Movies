@@ -94,7 +94,7 @@ Route::get('new-album', [AlbumController::class, 'newAlbum'])->name('new-album')
 
 Route::post('new-album', [AlbumController::class, 'albumCreate'])->name('albumCreate')->middleware('log');
 
-//Route::delete('myaccount/{albumID}', [LikesController::class, 'unLike'])->name('unlike')->middleware('log');
+Route::get('unlike/{albumID}', [LikesController::class, 'unLike'])->name('unlike')->middleware('log');
 
 Route::delete('myaccount/{album}', [AlbumController::class, 'albumDelete'])->name('albumDelete')->middleware('log');
 

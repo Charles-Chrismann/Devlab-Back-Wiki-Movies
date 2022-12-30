@@ -15,7 +15,7 @@ class AlbumController extends Controller
         return Inertia::render('NewAlbum');
     }
     public function albumDelete(Album $album){
-        $album->truncate();
+        $album->delete();
         return redirect()->route('myprofile')->with('message','Album deleted !');
     }
 
