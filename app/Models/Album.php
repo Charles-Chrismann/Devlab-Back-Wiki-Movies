@@ -34,9 +34,24 @@ class Album extends Model
             ->get();
     }
 
+    public static function isPrivate($albumID){
+        if(self::select('isPrivate')->where('id','=', $albumID)->get()->first()['isPrivate'] === 1){
+            return true;
+        }
+        return false;
+    }
+
+    public static function albumExist($albumID){
+        if(self::where('id','=', $albumID)->count() > 0){
+            return true;
+        }
+        return false;
+    }
+
     public static function getThisAlbum($albumID){
         return self::where('id','=',$albumID)->get()->first();
     }
+
 
     protected $fillable = ['name', 'isPrivate'];
 }

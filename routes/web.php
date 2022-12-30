@@ -104,7 +104,11 @@ Route::get('movie/{id}/addmovie',[AddMovieController::class, 'addMoviePage'])->n
 
 Route::post('movie/{id}/addmovie',[AddMovieController::class, 'addMovie'])->name('addmovie')->middleware('log');
 
-Route::get('myaccount/{albumID}/delete', [RemoveMovieController::class, 'deleteMoviePage'])
-    ->name('deletemoviepage')
-    ->middleware('log')
-    ->middleware('owner');
+Route::get('album/{albumID}', [RemoveMovieController::class, 'AlbumPage'])
+    ->name('albumpage')->middleware('owner');
+
+
+Route::get('likeAlbum/{AlbulID}', [LikesController::class, 'like'])->name('like')->middleware('log');
+
+Route::get('removie/{albumID}/{movieID}', [RemoveMovieController::class, 'removeMovie'])->name('removie')->middleware('log');
+

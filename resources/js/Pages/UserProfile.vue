@@ -3,7 +3,7 @@
 import { onMounted, ref, reactive } from 'vue';
 import { Link } from "@inertiajs/inertia-vue3";
 import Layout from '../Shared/Layout.vue';
-defineProps(['userDatas', 'albums', 'liked'])
+defineProps(['userDatas', 'albums', 'liked', 'logLiked', 'log'])
 let isPersonal = ref(true);
 let createAlbumForm = ref(null)
 
@@ -56,9 +56,13 @@ function displayCreateAlbumForm(display) {
                     <div v-for="album, index in albums" class="w-full text-white flex justify-between px-8 py-4 relative">
                         <span>Visibilté</span>
                         <span>{{ album.name }}</span>
-                        <span class="z-10 cursor-pointer" @click="showOptions(`.optionsPersonal-${index}`)">. . .</span>
-                        <Link class="absolute inset-0" :href="'/username/albumName'">ffff</Link>
-                        <div :class="'optionsPersonal-' + index">ttt</div>
+                        <div v-if="log">
+                            <Link v-if="logLiked.includes(album.AlbumID)" :href ="route('unlike', album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Unlike</Link>
+                            <Link v-else :href="route('like',album.AlbumID)" class="focus:outline-none text-white bg-customGreen hover:bg-green-700 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Like</Link>
+                        </div>
+<!--                        <span class="z-10 cursor-pointer" @click="showOptions(`.optionsPersonal-${index}`)">. . .</span>-->
+<!--                        <Link class="absolute inset-0" :href="'/username/albumName'">ffff</Link>-->
+<!--                        <div :class="'optionsPersonal-' + index">ttt</div>-->
                     </div>
                 </div>
                 <div class="albums_liked w-full translate-x-full">

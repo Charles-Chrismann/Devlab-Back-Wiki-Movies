@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Album;
 use App\Models\User_album;
 use Closure;
 use Illuminate\Http\Request;
@@ -17,7 +18,11 @@ class AlbumOwner
      */
     public function handle(Request $request, Closure $next)
     {
-        if(User_album::isOwner(session('userID'), $request['albumID'])){
+        if (Album::isPrivate($request['albumID'])){
+            if(User_album::isOwner(session('userID'), $request['albumID'])){
+                return $next($request);
+            }
+        }else{
             return $next($request);
         }
         abort(403);
