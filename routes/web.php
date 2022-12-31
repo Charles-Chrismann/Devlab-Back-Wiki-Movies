@@ -49,7 +49,7 @@ Route::get('/genres/{genreId}', function($genreId) {
 Route::get('/movie/{id}', function($id) {
     $movie = \App\Http\Controllers\MovieController::getMovieById($id);
     return Inertia::render('Movie', ['movie' => $movie]);
-});
+})->name('singlemovie');
 
 Route::get('/search/{queryStr}', function($queryStr) {
     $queryParams = [
