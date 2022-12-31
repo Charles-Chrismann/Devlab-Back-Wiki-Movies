@@ -39,15 +39,15 @@ function destroy(album){
             <div class="albums__list flex">
                 <div class="albums_personals w-full">
                     <div v-for="album, index in albums" class="w-full text-white flex justify-between px-8 py-4 relative">
-                        <button @click ="destroy(album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">delete</button>
+                        <button v-if="album.isDefault === 0" @click ="destroy(album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">delete</button>
                         <span v-if=" album.isPrivate === 0 " >Public</span>
                         <span v-else>Private</span>
-                        <Link :href="route('albumpage',album.AlbumID)">{{ album.name }}</Link>
+                        <Link :href="route('albumpage',album.AlbumID)" class="text-white hover:text-customGreen">{{ album.name }}</Link>
                     </div>
                 </div>
                 <div class="albums_liked w-full translate-x-full">
                     <div v-for="album in liked">
-                        <p class="w-full text-white flex justify-between px-8 py-4 relative">{{ album.name }}</p>
+                        <Link class="text-white hover:text-customGreen" :href="route('albumpage',album.AlbumID)">{{ album.name }}</Link>
                         <Link :href ="route('unlike', album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Unlike</Link>
 
                     </div>

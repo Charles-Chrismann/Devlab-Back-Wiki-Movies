@@ -55,7 +55,7 @@ function displayCreateAlbumForm(display) {
                 <div class="albums_personals w-full">
                     <div v-for="album, index in albums" class="w-full text-white flex justify-between px-8 py-4 relative">
                         <span>Visibilté</span>
-                        <span>{{ album.name }}</span>
+                        <Link :href="route('albumpage',album.AlbumID)" class="text-white hover:text-customGreen">{{ album.name }}</Link>
                         <div v-if="log">
                             <Link v-if="logLiked.includes(album.AlbumID)" :href ="route('unlike', album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Unlike</Link>
                             <Link v-else :href="route('like',album.AlbumID)" class="focus:outline-none text-white bg-customGreen hover:bg-green-700 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Like</Link>
@@ -67,7 +67,11 @@ function displayCreateAlbumForm(display) {
                 </div>
                 <div class="albums_liked w-full translate-x-full">
                     <div v-for="album in liked">
-                        {{ album.name }}
+                        <Link :href="route('albumpage',album.AlbumID)" class="text-white hover:text-customGreen">{{ album.name }}</Link>
+                        <div v-if="log">
+                            <Link v-if="logLiked.includes(album.AlbumID)" :href ="route('unlike', album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Unlike</Link>
+                            <Link v-else :href="route('like',album.AlbumID)" class="focus:outline-none text-white bg-customGreen hover:bg-green-700 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Like</Link>
+                        </div>
                     </div>
                 </div>
             </div>

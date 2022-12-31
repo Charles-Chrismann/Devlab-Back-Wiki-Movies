@@ -33,11 +33,13 @@ class RegisterController extends Controller
             $watched = Album::create([
                         'isPrivate' => 0,
                         'name' => 'Watched',
+                        'isDefault' => 1,
                     ]);
 
             $ptw = Album::create([
                 'isPrivate' => 0,
                 'name' => 'Plan to watch',
+                'isDefault' => 1,
             ]);
 
             foreach ([$watched, $ptw] as $album){

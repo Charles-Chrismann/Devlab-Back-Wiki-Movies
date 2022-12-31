@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->boolean('isPrivate')->default(true);
             $table->string('name');
+            $table->boolean('isDefault')->default(false);
             $table->timestamps();
         });
     }
