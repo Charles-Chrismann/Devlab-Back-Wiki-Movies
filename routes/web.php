@@ -105,10 +105,21 @@ Route::get('movie/{id}/addmovie',[AddMovieController::class, 'addMoviePage'])->n
 Route::post('movie/{id}/addmovie',[AddMovieController::class, 'addMovie'])->name('addmovie')->middleware('log');
 
 Route::get('album/{albumID}', [RemoveMovieController::class, 'AlbumPage'])
-    ->name('albumpage')->middleware('owner');
+    ->name('albumpage')->middleware('albumExist')->middleware('owner');
 
 
 Route::get('likeAlbum/{AlbulID}', [LikesController::class, 'like'])->name('like')->middleware('log');
 
 Route::get('removie/{albumID}/{movieID}', [RemoveMovieController::class, 'removeMovie'])->name('removie')->middleware('log');
 
+Route::get('album/edit/{albumID}', [AlbumController::class, 'albumEdit'])->name('albumeditpage')
+    ->middleware('log')
+    ->middleware('albumExist')
+    ->middleware('notDefault')
+    ->middleware('owner');
+
+Route::post('album/edit/{albumID}', [AlbumController::class, 'albumUpdate'])->name('albumupdate')
+    ->middleware('log')
+    ->middleware('albumExist')
+    ->middleware('notDefault')
+    ->middleware('owner');

@@ -40,6 +40,8 @@ function destroy(album){
                 <div class="albums_personals w-full">
                     <div v-for="album, index in albums" class="w-full text-white flex justify-between px-8 py-4 relative">
                         <button v-if="album.isDefault === 0" @click ="destroy(album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">delete</button>
+                        <Link v-if="album.isDefault === 0" :href="route('albumeditpage',album.AlbumID)" class="focus:outline-none text-white bg-blue-500 hover:bg-blue-700 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Edit</Link>
+
                         <span v-if=" album.isPrivate === 0 " >Public</span>
                         <span v-else>Private</span>
                         <Link :href="route('albumpage',album.AlbumID)" class="text-white hover:text-customGreen">{{ album.name }}</Link>

@@ -1,6 +1,5 @@
 <script>
-import {useForm} from "@inertiajs/inertia-vue3"
-
+import {Link, useForm} from "@inertiajs/inertia-vue3";
 export default {
     props:{
         errors: Object,
@@ -34,6 +33,7 @@ export default {
                 </div>
                 <input class="w-full sm:w-fit text-white bg-customGreen py-4 mt-8 px-16" type="submit" value="Login">
             </form>
+            <a :href="route('register')" class="text-customGreen">register</a>
         </div>
         <div v-if="res" class="w-full bg-red-500 text-white py-2 px-4 pr-0 rounded font-bold mb-4 shadow-lg">
             <p class="text-sm">{{ res }}</p>

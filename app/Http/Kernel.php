@@ -68,5 +68,7 @@ class Kernel extends HttpKernel
         'log' => \App\Http\Middleware\IsLoggedin::class,
         'movie' => \App\Http\Middleware\MovieExist::class,
         'owner'=> \App\Http\Middleware\AlbumOwner::class,
+        'notDefault'=> \App\Http\Middleware\NotDefault::class,
+        'albumExist'=>\App\Http\Middleware\AlbumExist::class,
     ];
 }

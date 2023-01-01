@@ -7,6 +7,7 @@ defineProps(['movies', 'albumInfos', 'errors', 'owner'])
 <template>
     <Layout>
         <div class="">
+        <Link v-if="owner" :href="route('albumeditpage',albumInfos.id)" class="focus:outline-none text-white bg-blue-500 hover:bg-blue-700 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Edit</Link>
             <h1 class="mt-5 pb-8 text-customGreen text-2xl text-center">Album : {{ albumInfos.name }}</h1>
                 <p class="text-white text-xl text-center" v-if="!movies.length">Nothing Here ...</p>
                 <div class="flex flex-wrap mygap">
