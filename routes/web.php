@@ -14,6 +14,7 @@ use \App\Http\Controllers\AlbumController;
 use \App\Http\Controllers\LikesController;
 use \App\Http\Controllers\AddMovieController;
 use \App\Http\Controllers\RemoveMovieController;
+use \App\Http\Controllers\InvitationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +87,7 @@ Route::get('register', [RegisterController::class, 'register'])->name('register'
 
 Route::post('register', [RegisterController::class, 'registerPost'])->name('register.post');
 
-Route::get('user/{username}', [UserController::class, 'ProfileView']);
+Route::get('user/{username}', [UserController::class, 'ProfileView'])->name('userProfile');
 
 Route::get('myaccount', [MyProfileController::class, 'MyProfile'])->name('myprofile')->middleware('log');
 
@@ -123,3 +124,16 @@ Route::post('album/edit/{albumID}', [AlbumController::class, 'albumUpdate'])->na
     ->middleware('albumExist')
     ->middleware('notDefault')
     ->middleware('owner');
+
+Route::get('invitations',[InvitationController::class, 'invPage'])->name('invPage')
+    ->middleware('log');
+
+Route::get('accept/{guestID}/{ownerID}/{albumID}',[InvitationController::class, 'acceptInv'])
+    ->name('acceptInv')
+    ->middleware('log')
+    ->middleware('albumExist')
+    ->middleware('notDefault');
+
+Route::get('refuse/{guestID}/{ownerID}/{albumID}',[InvitationController::class, 'declineInv'])
+    ->name('declineInv')
+    ->middleware('log');
