@@ -59,6 +59,13 @@ class Album extends Model
         return false;
     }
 
+    public static function getNotDefault($userID){
+        return self::select('name', 'id')
+            ->leftJoin('user_albums','albums.id','=','user_albums.album_id')
+            ->where('isDefault',"=",0)
+            ->where('user_albums.user_id','=',$userID)
+            ->get();
+    }
 
     protected $fillable = ['name', 'isPrivate', 'isDefault'];
 }

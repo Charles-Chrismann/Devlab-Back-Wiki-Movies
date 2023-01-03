@@ -14,8 +14,8 @@ defineProps(['invitations'])
                 <p>invited you to join: </p>
                 <Link :href="route('albumpage', inv.albumID)">{{ inv.albumName }}</Link>
                 <div class="">
-                    <Link :href="route('acceptInv', {guestID:inv.guestID, ownerID:inv.ownerID, albumID:inv.albumID})">Accept</Link>
-                    <Link :href="route('declineInv', {guestID:inv.guestID, ownerID:inv.ownerID, albumID:inv.albumID})">Decline</Link>
+                    <Link  class="text-customGreen" :href="route('acceptInv', {ownerID:inv.ownerID, albumID:inv.albumID})">Accept</Link>
+                    <Link class="text-red-600" :href="route('declineInv', {ownerID:inv.ownerID, albumID:inv.albumID})">Decline</Link>
                 </div>
             </div>
         </div>

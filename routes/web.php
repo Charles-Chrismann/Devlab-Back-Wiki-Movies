@@ -128,12 +128,17 @@ Route::post('album/edit/{albumID}', [AlbumController::class, 'albumUpdate'])->na
 Route::get('invitations',[InvitationController::class, 'invPage'])->name('invPage')
     ->middleware('log');
 
-Route::get('accept/{guestID}/{ownerID}/{albumID}',[InvitationController::class, 'acceptInv'])
+Route::get('accept/{ownerID}/{albumID}',[InvitationController::class, 'acceptInv'])
     ->name('acceptInv')
     ->middleware('log')
     ->middleware('albumExist')
     ->middleware('notDefault');
 
-Route::get('refuse/{guestID}/{ownerID}/{albumID}',[InvitationController::class, 'declineInv'])
+Route::get('refuse/{ownerID}/{albumID}',[InvitationController::class, 'declineInv'])
     ->name('declineInv')
     ->middleware('log');
+
+Route::get('sendinvite', [InvitationController::class, 'sendInvPage'])->name('sendInvPage')->middleware('log');
+
+Route::post('sendinvite', [InvitationController::class, 'sendInv'])->name('sendInv')->middleware('log');
+

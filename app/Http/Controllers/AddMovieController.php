@@ -23,19 +23,25 @@ class AddMovieController extends Controller
 
         $request->validate(['album'=>'required']);
 
-        if(User_album::isOwner(session()->get('userID'), $request['album'])){
+        if (Album::albumExist($request['album'])){
 
-            if(!Album_film::AlreadyExist($filmID, $request['album'])){
+            if(User_album::isOwner(session()->get('userID'), $request['album'])){
 
-                Album_film::addMovie($filmID,$request['album']);
-                return redirect()->route('myprofile')->with('message','Movie added successfully !');
+                if(!Album_film::AlreadyExist($filmID, $request['album'])){
 
+                    Album_film::addMovie($filmID,$request['album']);
+                    return redirect()->route('myprofile')->with('message','Movie added successfully !');
+
+                }else{
+                    $res = "the movie is already in this album";
+                }
             }else{
-                $res = "the movie is already in this album";
+                $res = "You do not own this album";
             }
         }else{
-            $res = "You do not own this album";
+            $res = "Unknow album";
         }
+
 
         $movie = (new SearchController)->getMovieById($filmID);
         return Inertia::render('AddMovie',['res'=>$res,'film'=>$movie,'albums' => Album::getAllAlbum(session()->get('userID'))]);

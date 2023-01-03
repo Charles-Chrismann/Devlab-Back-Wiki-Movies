@@ -13,6 +13,10 @@ class User extends Model
         return  User::select('id','username','pp_url')->where('username', $username)->first();
     }
 
+    public static function userExist($username){
+        return self::where('username','=', $username)->count() > 0;
+    }
+
     protected $fillable = ['username', 'email', 'password', 'pp_url'];
 
 //    protected $primaryKey = 'username';
