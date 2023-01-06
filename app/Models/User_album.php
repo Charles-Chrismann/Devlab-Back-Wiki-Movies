@@ -17,10 +17,7 @@ class User_album extends Model
     }
 
     public static function isOwner($userID, $albumID){
-        if(self::where('album_id',"=",$albumID)->where('user_id','=', $userID)->count() === 1){
-            return true;
-        }
-        return false;
+        return self::where('album_id',"=",$albumID)->where('user_id','=', $userID)->count() === 1 ;
     }
 
 

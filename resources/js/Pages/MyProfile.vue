@@ -24,6 +24,7 @@ function destroy(album){
 <template>
     <Layout>
         <div class="">
+            <Link :href="route('invPage')" class="w-full sm:w-fit text-white bg-customGreen py-4 mt-8 px-16 cursor-pointer">Invitations</Link>
             <h1 class="text-white">{{ userDatas.username }}</h1>
             <img :src=userDatas.pp_url alt="profile picture" class="h-32 w-32 rounded-full">
         </div>

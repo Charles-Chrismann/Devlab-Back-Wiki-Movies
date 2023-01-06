@@ -11,10 +11,7 @@ class Album_film extends Model
 
 
     public static function AlreadyExist($filmID, $albumID){
-        if(self::where('album_id',"=",$albumID)->where('movie_id','=', $filmID)->count() != 0){
-            return true;
-        }
-        return false;
+        return self::where('album_id',"=",$albumID)->where('movie_id','=', $filmID)->count() != 0;
     }
 
     public static function addMovie($filmID, $albumID){

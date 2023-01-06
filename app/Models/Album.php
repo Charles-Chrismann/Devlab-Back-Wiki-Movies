@@ -35,17 +35,11 @@ class Album extends Model
     }
 
     public static function isPrivate($albumID){
-        if(self::select('isPrivate')->where('id','=', $albumID)->get()->first()['isPrivate'] === 1){
-            return true;
-        }
-        return false;
+        return self::select('isPrivate')->where('id','=', $albumID)->get()->first()['isPrivate'] === 1;
     }
 
     public static function albumExist($albumID){
-        if(self::where('id','=', $albumID)->count() > 0){
-            return true;
-        }
-        return false;
+        return self::where('id','=', $albumID)->count() > 0;
     }
 
     public static function getThisAlbum($albumID){
@@ -53,10 +47,7 @@ class Album extends Model
     }
 
     public static function isDefault($albumID){
-        if(self::select('isDefault')->where('id','=', $albumID)->get()->first()['isDefault'] === 1){
-            return true;
-        }
-        return false;
+        return self::select('isDefault')->where('id','=', $albumID)->get()->first()['isDefault'] === 1;
     }
 
     public static function getNotDefault($userID){
