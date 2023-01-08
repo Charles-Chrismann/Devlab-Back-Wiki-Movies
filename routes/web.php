@@ -36,9 +36,7 @@ use \App\Http\Controllers\InvitationController;
 //     ]);
 // });
 
-Route::get('/', function() {
-    return Inertia::render('Hw');
-})->name('home');
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'defaultHomeView'])->name('home');
 
 Route::get('/discover/', [DiscoverController::class, 'view']);
 

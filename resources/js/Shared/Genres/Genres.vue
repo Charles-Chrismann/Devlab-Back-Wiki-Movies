@@ -82,9 +82,9 @@ const genres = [
 </script>
 
 <template>
-   <div class="flex">
+   <div class="flex w-full justify-between">
        <input id="toggleGenres" type="checkbox">
-        <ul class="flex flex-wrap bg-white">
+        <ul class="flex flex-wrap bg-white w-full">
             <Genre v-for="genre of genres" :genre="genre" />
         </ul>
         <label for="toggleGenres" class="bg-customGreen px-4">

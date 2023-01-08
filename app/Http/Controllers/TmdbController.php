@@ -60,4 +60,19 @@ class TmdbController extends Controller
         );
         return json_decode($response->getBody());
     }
+
+    public static function getFirstsMoviesByGenreId($genreId) {
+        $client = new \GuzzleHttp\Client(array(
+            'verify' => false,
+        ));
+        $response = $client->request(
+            'GET',
+            "https://api.themoviedb.org/3/discover/movie/",
+            ['query' => [
+                'api_key' => $_ENV['TMDB_API_KEY'],
+                'with_genres' => $genreId
+            ]]
+        );
+        return json_decode($response->getBody())->results;
+    }
 }
