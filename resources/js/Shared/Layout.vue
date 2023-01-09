@@ -20,7 +20,7 @@ import Genres from './Genres/Genres.vue'
                 <img src="" alt="home">
             </Link>
             <SearchBar/>
-            <div class="flex flex-col relative p-2 bg-customElementDark rounded-md">
+            <div  v-if="user.username" class="flex flex-col relative p-2 bg-customElementDark rounded-md">
                 <label for="userOptions" class="flex items-center cursor-pointer">
                     <img :src="user.profilePicture" alt="profilePicture" class="h-12 rounded-full">
                     <span class="text-customGreen w-32">
