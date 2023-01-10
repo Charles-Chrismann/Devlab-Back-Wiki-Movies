@@ -18,8 +18,9 @@ class DiscoverController extends Controller
 
         return Inertia::render('Discover', ['movies' => TmdbController::getDiscoverMovies($queryParams)]);
     }
-    public function api(){
+    public function api($genreId){
         $queryParams = [];
+        $queryParams['with_genres'] = $genreId;
         if(Request('include_adult') !== null) {
             if(Request('include_adult') === 'on') $queryParams['include_adult'] = 'true';
         }

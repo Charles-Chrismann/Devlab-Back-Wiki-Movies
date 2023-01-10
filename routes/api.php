@@ -22,4 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/search/{queryStr}', [\App\Http\Controllers\SearchController::class, 'search']);
 
-Route::get('/discover/', [DiscoverController::class, 'api']);
+Route::get('/discover/{genreId}', [DiscoverController::class, 'api']);

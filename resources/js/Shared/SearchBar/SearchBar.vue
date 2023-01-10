@@ -52,7 +52,7 @@ onMounted(() => {
             <!-- <Link :href="LinkHref" ref="submit">Rechercher</Link> -->
         </form>
     
-        <ul class="absolute bg-white">
+        <ul class="absolute bg-white z-50">
             <Result v-for="result in results" :film="result"/>
         </ul>
     </div>
