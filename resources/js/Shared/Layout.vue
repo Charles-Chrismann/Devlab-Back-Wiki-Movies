@@ -15,8 +15,8 @@ import Genres from './Genres/Genres.vue'
 </script>
 <template>
     <header class="">
-        <div class="header__top relative flex justify-between items-center px-12 py-4">
-            <Link href="/" class="w-48 h-16 py-2 pr-4">
+        <div class="header__top relative flex justify-between items-center flex-col sm:flex-row px-12 py-4">
+            <Link href="/" class="w-fit h-16 sm:py-2 sm:pr-4 sm:flex sm:justify-center sm:w-48 mb-4 sm:mb-0">
                 <img src="./../../../public/logo-invert.png" alt="home" class="h-full">
             </Link>
             <SearchBar/>

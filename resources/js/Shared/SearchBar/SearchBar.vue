@@ -46,9 +46,9 @@ onMounted(() => {
 </script>
 
 <template>
-    <div>
+    <div class="w-full sm:w-fit">
         <form :action="LinkHref" method="get" @submit.prevent="navigateToSearchPage">
-            <input type="text" @input="search" ref="searchbar">
+            <input type="text" @input="search" ref="searchbar" class="w-full">
             <!-- <Link :href="LinkHref" ref="submit">Rechercher</Link> -->
         </form>
     
