@@ -13,7 +13,8 @@ import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faAnglesLeft)
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+// const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+const appName = 'LaraZic';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

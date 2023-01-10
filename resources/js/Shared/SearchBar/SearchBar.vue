@@ -49,7 +49,7 @@ onMounted(() => {
     <div>
         <form :action="LinkHref" method="get" @submit.prevent="navigateToSearchPage">
             <input type="text" @input="search" ref="searchbar">
-            <Link :href="LinkHref" ref="submit">Rechercher</Link>
+            <!-- <Link :href="LinkHref" ref="submit">Rechercher</Link> -->
         </form>
     
         <ul class="absolute bg-white">

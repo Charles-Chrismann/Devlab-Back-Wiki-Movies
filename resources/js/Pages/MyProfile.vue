@@ -23,36 +23,40 @@ function destroy(album){
 
 <template>
     <Layout>
-        <div class="">
-            <Link :href="route('invPage')" class="w-full sm:w-fit text-white bg-customGreen py-4 mt-8 px-16 cursor-pointer">Invitations</Link>
-            <h1 class="text-white">{{ userDatas.username }}</h1>
-            <img :src=userDatas.pp_url alt="profile picture" class="h-32 w-32 rounded-full">
-        </div>
-        <button @click="Inertia.get(route('new-album'))" class="w-full sm:w-fit text-white bg-customGreen py-4 mt-8 px-16 cursor-pointer">New album</button>
-        <div v-if="$page.props.flash.message" class="text-blue-500 mb-4 text-center">
-            {{ $page.props.flash.message }}
-        </div>
-        <div class="albums overflow-hidden">
-            <div class="types w-full flex justify-between relative cursor-pointer" :class="reactive({'isPersonal': !isPersonal})">
-                <p class="w-1/2 text-center py-4" :class="reactive({'text-customGreen': isPersonal, 'text-white': !isPersonal})" @click="isPersonal = true">Personal Albums</p>
-                <p class="w-1/2 text-center py-4" :class="reactive({'text-customGreen': !isPersonal, 'text-white': isPersonal})" @click="isPersonal = false">Liked Albums</p>
-            </div>
-            <div class="albums__list flex">
-                <div class="albums_personals w-full">
-                    <div v-for="album, index in albums" class="w-full text-white flex justify-between px-8 py-4 relative">
-                        <button v-if="album.isDefault === 0" @click ="destroy(album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">delete</button>
-                        <Link v-if="album.isDefault === 0" :href="route('albumeditpage',album.AlbumID)" class="focus:outline-none text-white bg-blue-500 hover:bg-blue-700 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Edit</Link>
-
-                        <span v-if=" album.isPrivate === 0 " >Public</span>
-                        <span v-else>Private</span>
-                        <Link :href="route('albumpage',album.AlbumID)" class="text-white hover:text-customGreen">{{ album.name }}</Link>
-                    </div>
+        <div class="sm:px-12">
+            <div class="flex flex-col items-center py-12">
+                <img :src=userDatas.pp_url alt="profile picture" class="h-32 w-32 rounded-full mb-4">
+                <h1 class="text-white mb-6">{{ userDatas.username }}</h1>
+                <div class="w-full px-12 flex items-center justify-center flex-col sm:flex-row gap-4">
+                    <Link href="/new-album" class="w-full sm:w-fit text-white text-center bg-customGreen py-4 px-16 cursor-pointer">New album</Link>
+                    <Link :href="route('invPage')" class="w-full sm:w-fit text-white text-center bg-customGreen py-4 px-16 cursor-pointer">Invitations</Link>
                 </div>
-                <div class="albums_liked w-full translate-x-full">
-                    <div v-for="album in liked">
-                        <Link class="text-white hover:text-customGreen" :href="route('albumpage',album.AlbumID)">{{ album.name }}</Link>
-                        <Link :href ="route('unlike', album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Unlike</Link>
-
+            </div>
+            <div v-if="$page.props.flash.message" class="text-blue-500 mb-4 text-center">
+                {{ $page.props.flash.message }}
+            </div>
+            <div class="albums overflow-hidden">
+                <div class="types w-full flex justify-between relative cursor-pointer" :class="reactive({'isPersonal': !isPersonal})">
+                    <p class="w-1/2 text-center py-4" :class="reactive({'text-customGreen': isPersonal, 'text-white': !isPersonal})" @click="isPersonal = true">Personal Albums</p>
+                    <p class="w-1/2 text-center py-4" :class="reactive({'text-customGreen': !isPersonal, 'text-white': isPersonal})" @click="isPersonal = false">Liked Albums</p>
+                </div>
+                <div class="albums__list flex">
+                    <div class="albums_personals w-full">
+                        <div v-for="album, index in albums" class="w-full text-white flex justify-between px-8 py-4 relative">
+                            <button v-if="album.isDefault === 0" @click ="destroy(album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">delete</button>
+                            <Link v-if="album.isDefault === 0" :href="route('albumeditpage',album.AlbumID)" class="focus:outline-none text-white bg-blue-500 hover:bg-blue-700 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Edit</Link>
+    
+                            <span v-if=" album.isPrivate === 0 " >Public</span>
+                            <span v-else>Private</span>
+                            <Link :href="route('albumpage',album.AlbumID)" class="text-white hover:text-customGreen">{{ album.name }}</Link>
+                        </div>
+                    </div>
+                    <div class="albums_liked w-full translate-x-full">
+                        <div v-for="album in liked">
+                            <Link class="text-white hover:text-customGreen" :href="route('albumpage',album.AlbumID)">{{ album.name }}</Link>
+                            <Link :href ="route('unlike', album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Unlike</Link>
+    
+                        </div>
                     </div>
                 </div>
             </div>
