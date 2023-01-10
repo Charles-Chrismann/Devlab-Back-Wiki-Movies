@@ -29,7 +29,7 @@ async function queryAndUpdate() {
     }
     let movies
     await axios.get(uri).then(resp => {
-        movies = resp.data.results
+        movies = resp.data
         console.log(movies)
     })
     console.log("ttt", movies)
@@ -80,9 +80,9 @@ onMounted(async () => {
                 </form>
             </div>
             <div v-if="movies" class="flex flex-wrap justify-between">
-                <MovieCard v-for="movie of movies" :movie="movie" />
+                <MovieCard v-for="movie of movies.results" :movie="movie" />
             </div>
-            <!-- <Link :href="currentUrl + '?page=' + (parseInt(movies.page) + 1)">Next</Link> -->
+            <Link v-if="movies" :href="currentUrl + '?page=' + (parseInt(movies.page) + 1)">Next</Link>
         </div>
     </Layout>
 </template>
