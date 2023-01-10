@@ -42,19 +42,25 @@ function destroy(album){
                 </div>
                 <div class="albums__list flex">
                     <div class="albums_personals w-full">
-                        <div v-for="album, index in albums" class="w-full text-white flex justify-between px-8 py-4 relative">
-                            <button v-if="album.isDefault === 0" @click ="destroy(album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">delete</button>
-                            <Link v-if="album.isDefault === 0" :href="route('albumeditpage',album.AlbumID)" class="focus:outline-none text-white bg-blue-500 hover:bg-blue-700 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Edit</Link>
-    
-                            <span v-if=" album.isPrivate === 0 " >Public</span>
-                            <span v-else>Private</span>
-                            <Link :href="route('albumpage',album.AlbumID)" class="text-white hover:text-customGreen">{{ album.name }}</Link>
+                        <div v-for="album, index in albums" class="w-full text-white flex justify-between items-center px-8 sm:px-0 h-16 relative">
+                            <Link :href="route('albumpage',album.AlbumID)" class="itemMovie absolute inset-0"></Link>
+                            <Link :href="route('albumpage',album.AlbumID)" class="itemMovie__title text-white hover:text-customGreen z-10 absolute right-2/4 translate-x-1/2">{{ album.name }}</Link>
+                            <span v-if=" album.isPrivate === 0"  class="z-10">Public</span>
+                            <span v-else  class="z-10">Private</span>
+                            
+                            
+                            <div class="z-10 flex gap-1">
+                                <button v-if="album.isDefault === 0" @click ="destroy(album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">delete</button>
+                                <Link v-if="album.isDefault === 0" :href="route('albumeditpage',album.AlbumID)" class="focus:outline-none text-white bg-blue-500 hover:bg-blue-700 rounded-lg text-sm px-5 py-2.5">Edit</Link>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="albums_liked w-full translate-x-full">
-                        <div v-for="album in liked">
-                            <Link class="text-white hover:text-customGreen" :href="route('albumpage',album.AlbumID)">{{ album.name }}</Link>
-                            <Link :href ="route('unlike', album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Unlike</Link>
+                        <div v-for="album in liked" class="w-full text-white flex justify-between items-center px-8 sm:px-0 h-16 relative">
+                            <Link :href="route('albumpage',album.AlbumID)" class="itemMovie absolute inset-0"></Link>
+                            <Link class="text-white hover:text-customGreen itemMovie__title z-10" :href="route('albumpage',album.AlbumID)">{{ album.name }}</Link>
+                            <Link :href ="route('unlike', album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 z-10">Unlike</Link>
     
                         </div>
                     </div>
@@ -88,6 +94,12 @@ function destroy(album){
     .albums__list {
         width: 200%;
         transition: all ease-in-out 0.5s;
+    }
+}
+.itemMovie {
+
+    &:hover + .itemMovie__title {
+        color: #42d392;
     }
 }
 </style>

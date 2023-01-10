@@ -10,8 +10,9 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
-library.add(faAnglesLeft)
+library.add(faAnglesLeft, faTrashCan)
 
 // const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 const appName = 'LaraZic';
