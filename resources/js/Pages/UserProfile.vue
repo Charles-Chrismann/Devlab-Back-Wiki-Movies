@@ -44,7 +44,6 @@ function displayCreateAlbumForm(display) {
         <div class="flex flex-col justify-center items-center py-4">
             <img :src=userDatas.pp_url alt="profile picture" class="h-32 w-32 rounded-full mb-4">
             <h1 class="text-white mb-4">{{ userDatas.username }}</h1>
-            <button class="bg-customGreen text-white py-3 px-12 rounded-md" @click="displayCreateAlbumForm(true)">Create Album</button>
         </div>
         <div class="albums overflow-hidden">
             <div class="types w-full flex justify-between relative cursor-pointer" :class="reactive({'isPersonal': !isPersonal})">
@@ -54,7 +53,7 @@ function displayCreateAlbumForm(display) {
             <div class="albums__list flex">
                 <div class="albums_personals w-full">
                     <div v-for="album, index in albums" class="w-full text-white flex justify-between px-8 py-4 relative">
-                        <span>Visibilté</span>
+                        <span>Public</span>
                         <Link :href="route('albumpage',album.AlbumID)" class="text-white hover:text-customGreen">{{ album.name }}</Link>
                         <div v-if="log">
                             <Link v-if="logLiked.includes(album.AlbumID)" :href ="route('unlike', album.AlbumID)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Unlike</Link>

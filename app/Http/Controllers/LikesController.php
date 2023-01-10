@@ -18,7 +18,7 @@ class LikesController extends Controller
     public function like($albumID){
         if(Album::albumExist($albumID)){
             if(!Album::isPrivate($albumID)){
-                if(!Album_like::alreadyLike($albumID)){
+                if(Album_like::alreadyLike($albumID)){
                     Album_like::likeAlbum($albumID);
                 }
             }

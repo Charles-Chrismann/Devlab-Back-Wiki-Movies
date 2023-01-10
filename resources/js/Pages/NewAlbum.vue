@@ -27,4 +27,56 @@ let albumForm = useForm({'name':'', 'isPrivate' : 0})
         </div>
     </div>
 </template>
+<style lang="scss" scoped>
+input[type="checkbox"] {
+    outline: none;
+    border: none;
+    box-shadow: none;
 
+    background: transparent;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 4rem;
+    height: 2rem;
+
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: solid 2px #363636;
+        border-radius: 9999px;
+        transition: all 0.5s;
+    }
+    &:checked::before{
+        background: #42d392;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 80%;
+        aspect-ratio: 1 / 1;
+        border: solid 2px #363636;
+        border-radius: 9999px;
+        margin: 4px;
+        transition: all 0.5s;
+        transform: translate(0px);
+        background: #1a1a1a;
+    }
+    &:checked::after{
+        transform: translate(30px);
+    }
+
+    &:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+        background: none;
+    }
+}
+</style>
